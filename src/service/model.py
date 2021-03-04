@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 
+
 class ConnPostgre:
     def __init__(self, host, user, password, database):
         self.host = host
@@ -14,4 +15,7 @@ class ConnPostgre:
 
     def sql_insert(self, table_name, data_frame):
         data_frame.to_sql(table_name, self.conn, if_exists='append', index=False)
+        return True
+    def sql_change(self, table_name, data_frame):
+        data_frame.to_sql(table_name, self.conn, if_exists='replace', index=False)
         return True
